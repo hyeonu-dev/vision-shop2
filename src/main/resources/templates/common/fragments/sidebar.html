@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="sidebarFragment" class="h-screem">
+<div class="h-full flex flex-col bg-white px-5 border-right-gray">
+    <!-- 헤더 -->
+    <div class="h-20 flex items-center justify-center">
+        <div th:replace="~{common/fragments/header :: header}"></div>
+    </div>
+
+    <!-- 메뉴 -->
+    <ul class="mt-5 space-y-2">
+        <li>
+            <a href="/categories"
+               class="flex items-center rounded-md p-2 color-black hover:color-white font-medium menu-item"
+               id="category-menu">
+                <img th:src="@{/img/user-icon.png}" alt="Category Icon" class="w-6 h-6 mr-2 menu-icon">
+                카테고리 관리
+            </a>
+        </li>
+        <li>
+            <a href="/products"
+               class="flex items-center rounded-md p-2 color-black hover:color-black font-medium menu-item"
+               id="product-menu">
+                <img th:src="@{/img/user-icon.png}" alt="Discount Icon" class="w-6 h-6 mr-2 menu-icon">
+                제품 관리
+            </a>
+        </li>
+    </ul>
+
+</div>
+<script type="text/javascript"  th:src="@{/js/layout/sidebar.js}"></script>
+</body>
+</html>

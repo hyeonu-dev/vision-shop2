@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/modal-layout}">
+<body>
+<div layout:fragment="modalFragment" id="category-modal">
+  <div class="p-6 border-bottom-dgray">
+    <div id="modal-title" class="text-xl" th:text="${modalTitle}"></div>
+  </div>
+
+  <form id="category-form" method="POST" class="flex flex-col">
+    <div class="flex items-center gap-14 px-6 py-10 border-bottom-gray">
+      <label for="categoryName" class="w-1/4">카테고리 이름</label> <!-- 라벨의 너비를 적당히 설정 -->
+      <div class="relative flex-1">
+        <input type="text" th:value="${category != null ? category.categoryName : null}"
+               id="categoryName" name="categoryName" class="w-full" placeholder="카테고리 이름을 입력해주세요.">
+        <div id="category-name-error" class="absolute left-3 mt-1 hidden color-red"></div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-end gap-x-1.5 px-6 py-10">
+      <button id="btn-close" type="button" class="btn-gray h-12 w-24">취소하기</button>
+      <button id="btn-save" type="submit" class="btn-orange h-12 w-24">저장하기</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

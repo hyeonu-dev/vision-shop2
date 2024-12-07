@@ -1,0 +1,57 @@
+a.btn-white:hover {
+  color: #E74E0F !important;
+}
+a.btn-gray:hover {
+  color: #121212 !important;
+}
+
+#btn-cancle, #btn-save {
+  width: 120px;
+  height: 48px;
+  text-align: center;
+  align-content: center;
+}
+
+.content-area {
+  min-width: 460px !important;
+}
+.product-content {
+  border-bottom: 1px solid #A0A0A0;
+  label {
+    min-height: 54px;
+    padding-left: 24px;
+    margin-right: 2px;
+    background-color: #F9FAFB;
+  }
+  label[for="detailImage"], label[for="thumbnailImage"] {
+    height: 208px;
+  }
+  input, select {
+    max-width: 420px;
+  }
+  p {
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    font-size: calc(1rem - 0.1vw);
+    line-height: 1.2;
+  }
+}
+
+.thumbnail-upload-area, .detail-upload-area {
+  border: 1px dotted #E74E0F;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+  max-width: 420px;
+  cursor: pointer;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  img {
+    max-height: 150px;
+  }
+}
+
+.hidden {
+  display: none !important;
+}

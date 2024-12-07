@@ -1,0 +1,58 @@
+<!-- src/main/resources/templates/product/list.html -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/layout}">
+<head>
+    <link rel="stylesheet" th:href="@{/css/product/product.css}"/>
+</head>
+<body>
+<section layout:fragment="contentFragment" class="mx-auto w-full">
+    <div th:replace="~{common/fragments/title :: titleFragment(title=${'상품 등록'})}"></div>
+
+    <!-- 버튼을 우측에 정렬 -->
+    <div class="flex justify-end items-center mt-4 mb-3">
+        <a class="btn-white px-4 py-2 rounded" th:href="@{/products/new-product}">상품 등록</a>
+    </div>
+
+    <div class="bg-white rounded-lg">
+        <!-- 테이블 -->
+        <table class="w-full">
+            <thead class="table-header">
+            <tr>
+                <th class="table-cell w-20 text-center">번호</th>
+                <th class="table-cell w-3/12 text-center">상품명</th>
+                <th class="table-cell w-1/12 text-center">출판사</th>
+                <th class="table-cell w-1/12 text-center">저자/옮긴이</th>
+                <th class="table-cell w-1/12 text-center">매입원가</th>
+                <th class="table-cell w-1/12 text-center">판매원가</th>
+                <th class="table-cell w-1/12 text-center">할인금액</th>
+                <th class="table-cell w-1/12 text-center">판매가</th>
+                <th class="table-cell w-1/12 text-center">수정</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${paging.content != null}" th:each="product, loop: ${paging.content}" class="table-row">
+                <td class="table-cell w-20 text-center" th:text="${loop.index + 1}"></td>
+                <td class="table-cell w-1/12 text-center" th:text="${product.productName}"></td>
+                <td class="table-cell w-1/12 text-center" th:text="${product.publisherName}"></td>
+                <td class="table-cell w-1/12 text-center" th:text="${product.authorName} + ${#strings.isEmpty(product.translatorName) ? '' : '/' + product.translatorName}"></td>
+                <td class="table-cell w-1/12 text-center" th:text="${@priceRenderUtil.renderPrice(product.purchasePrice)}"></td>
+                <td class="table-cell w-1/12 text-center" th:text="${@priceRenderUtil.renderPrice(product.unitPrice)}"></td>
+                <td class="table-cell w-1/12 text-center" th:text="${@priceRenderUtil.renderPrice(product.discountPrice)}"></td>
+                <td class="table-cell w-1/12 text-center" th:text="${@priceRenderUtil.renderPrice(product.sellingPrice)}"></td>
+                <td class="table-cell w-2/12 text-center">
+                    <a th:data="${product.id}" th:href="@{|/products/update-product/${product.id}|}" class="rounded btn-gray py-2 px-5">수정</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- 페이지네이션 -->
+        <div th:replace="~{common/fragments/table-paging :: pagingFragment(pageLink='/products?page=', paging=${paging})}">
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

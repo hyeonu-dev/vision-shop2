@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/layout}">
+<body>
+<section layout:fragment="contentFragment" class="mx-auto w-full">
+    <div th:replace="~{common/fragments/title :: titleFragment(title=${'카테고리 관리'})}"></div>
+
+    <div class="flex justify-end items-center mt-4 mb-3">
+        <button class="btn-white px-4 py-2" id="create-category">카테고리 추가</button>
+    </div>
+
+    <div class="bg-white rounded-lg">
+        <table class="w-full">
+            <thead class="table-header">
+            <tr>
+                <th class="table-cell w-20 text-center">번호</th>
+                <th class="table-cell w-6/12 text-center">이름</th>
+                <td class="table-cell w-2/12 text-center">제품 등록 개수</td>
+                <th class="table-cell text-center">수정</th>
+                <th class="table-cell text-center">삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${categories != null}" th:each="category, loop: ${categories.content}" class="table-row">
+                <td class="table-cell w-20 text-center" th:text="${loop.index + 1}"></td>
+                <td class="table-cell w-6/12 text-center" th:text="${category.categoryName}"></td>
+<!--                <td class="table-cell w-2/12 text-center" th:text="${category.productCount}"></td>-->
+                <td class="table-cell text-center">
+                    <button id="btn-edit" th:data="${category.id}" class="btn-gray px-5">수정</button>
+                </td>
+                <td class="table-cell text-center">
+                    <button th:data="${category.id}" class="btn-gray btn-delete px-5">삭제</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:replace="~{common/fragments/table-paging :: pagingFragment(pageLink='/categories?page=', paging=${categories})}">
+        </div>
+    </div>
+
+    <div id="modal-area"></div>
+    <script type="text/javascript"  th:src="@{/js/category/category.js}"></script>
+</section>
+</body>
+</html>

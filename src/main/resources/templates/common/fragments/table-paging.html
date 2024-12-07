@@ -1,0 +1,23 @@
+<div th:fragment="pagingFragment(pageLink, paging)">
+  <div th:if="${paging.totalPages == 0}" class="flex justify-center py-5 border-bottom-gray">
+    데이터가 존재하지 않습니다.
+  </div>
+  <div th:if="${paging.totalPages != 0}" class="flex justify-center mt-5">
+    <!-- 이전 페이지 -->
+    <a class="page-link" th:if="${paging.hasPrevious()}"
+       th:href="@{|${pageLink}${paging.number - 1}|}">이전</a>
+
+    <!-- 페이지 번호 -->
+    <a class="page-link" th:each="page : ${#numbers.sequence(
+            (paging.number / 5) * 5 + 1,
+            (paging.number / 5) * 5 + 5 > paging.totalPages ? paging.totalPages : (paging.number / 5) * 5 + 5)}"
+       th:classappend="${page - 1 == paging.number} ? 'active' : ''"
+       th:href="@{|${pageLink}${page - 1}|}"
+       th:text="${page}"></a>
+
+    <!-- 다음 페이지 -->
+    <a class="page-link" th:if="${paging.hasNext()}"
+       th:href="@{|${pageLink}${paging.number + 1}|}">다음</a>
+  </div>
+</div>
+

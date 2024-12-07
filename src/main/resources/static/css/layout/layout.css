@@ -1,0 +1,17 @@
+.menu-item.active {
+    background-color: #E74E0F; /* 오렌지 색 */
+    color: white;
+}
+.menu-item:hover {
+    color: #121212 !important;
+}
+.menu-item.active:hover {
+    color: white !important;
+}
+.menu-item img.selected {
+    content: url('../../img/user-icon-selected.png'); /* 선택된 이미지를 표시 */
+}
+
+.menu-item img {
+    content: url('../../img/user-icon.png'); /* 기본 이미지 표시 */
+}

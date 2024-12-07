@@ -1,0 +1,20 @@
+<!-- src/main/resources/templates/common/layouts/layout.html -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>ShoppingMall</title>
+    <link rel="stylesheet" th:href="@{/css/layout/layout.css}">
+</head>
+<body class="flex h-screen sidebar-fragment" >
+<div th:replace="~{common/fragments/config :: config}"></div>
+    <!-- 사이드바 -->
+    <div class="w-64 flex-none w-64 sm:w-72 lg:w-80 h-full" th:replace="~{common/fragments/sidebar :: sidebarFragment}"></div>
+
+    <!-- 메인 콘텐츠 -->
+    <div class="flex-1 px-10 py-20">
+        <div class="mx-auto w-full" layout:fragment="contentFragment"></div> <!-- 페이지별 콘텐츠 삽입 -->
+    </div>
+</body>
+</html>
